@@ -92,62 +92,62 @@
                             
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Cota terreno:</label>
-                                <input type="text" class="form-control" placeholder="Cota terreno" name="<?php echo $row['cotaTerreno']?>" value="<?php echo $row['cotaTerreno']?>">                  
+                                <input type="text" class="form-control" placeholder="Cota terreno" name="cotaTerreno" value="<?php echo $row['cotaTerreno']?>">                  
                             </div>
                             
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Profundidade final:</label>
-                                <input type="text" class="form-control" placeholder="Profundidade final" name="<?php echo $row['profundidadeFinal']?>" value="<?php echo $row['profundidadeFinal']?> metros">
+                                <input type="text" class="form-control" placeholder="Profundidade final" name="profundidadeFinal" value="<?php echo $row['profundidadeFinal']?> metros">
                             </div>
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Nível dinâmico:</label>
-                                <input type="text" class="form-control" placeholder="Nível dinâmico" name="<?php echo $row['nivelDinamico']?>" value="<?php echo $row['nivelDinamico']?>">
+                                <input type="text" class="form-control" placeholder="Nível dinâmico" name="nivelDinamico>" value="<?php echo $row['nivelDinamico']?>">
                             </div>
                             
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Nível Estático:</label>
-                                <input type="text" class="form-control" placeholder="Nível Estático" name="<?php echo $row['nivelEstatico']?>" value="<?php echo $row['nivelEstatico']?>">
+                                <input type="text" class="form-control" placeholder="Nível Estático" name="nivelEstatico" value="<?php echo $row['nivelEstatico']?>">
                             </div>
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Vazão:</label>
-                                <input type="text" class="form-control" placeholder="Vazão" name="<?php echo $row['vazaoEstabilizacao']?>" value="<?php echo $row['vazaoEstabilizacao']?>">
+                                <input type="text" class="form-control" placeholder="Vazão" name="vazaoEstabilizacao" value="<?php echo $row['vazaoEstabilizacao']?>">
                             </div>
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Condutividade:</label>
-                                <input type="text" class="form-control" placeholder="Condutividade" name="<?php echo $row['condutividade']?>" value="<?php echo $row['condutividade']?>">
+                                <input type="text" class="form-control" placeholder="Condutividade" name="condutividade" value="<?php echo $row['condutividade']?>">
                             </div>
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Cor:</label>
-                                <input type="text" class="form-control" placeholder="Cor" name="<?php echo $row['cor']?>" value="<?php echo $row['cor']?>">
+                                <input type="text" class="form-control" placeholder="Cor" name="cor" value="<?php echo $row['cor']?>">
                             </div>
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Cor Parâmetro:</label>
-                                <input type="text" class="form-control" placeholder="Cor Parâmetro" name="<?php echo $row['corParametro']?>" value="<?php echo $row['corParametro']?>">
+                                <input type="text" class="form-control" placeholder="Cor Parâmetro" name="corParametro" value="<?php echo $row['corParametro']?>">
                             </div>
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Odor:</label>
-                                <input type="text" class="form-control" placeholder="Odor" name="<?php echo $row['odor']?>" value="<?php echo $row['odor']?>">
+                                <input type="text" class="form-control" placeholder="Odor" name="odor" value="<?php echo $row['odor']?>">
                             </div>
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Sabor:</label>
-                                <input type="text" class="form-control" placeholder="Sabor" name="<?php echo $row['sabor']?>" value="<?php echo $row['sabor']?>">
+                                <input type="text" class="form-control" placeholder="Sabor" name="sabor" value="<?php echo $row['sabor']?>">
                             </div>
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Temperatura:</label>
-                                <input type="text" class="form-control" placeholder="Temperatura" name="<?php echo $row['temperatura']?>" value="<?php echo $row['temperatura']?> °C">
+                                <input type="text" class="form-control" placeholder="Temperatura" name="temperatura" value="<?php echo $row['temperatura']?>">
                             </div>
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Turbidez:</label>
-                                <input type="text" class="form-control" placeholder="Turbidez" name="<?php echo $row['turbidez']?>" value="<?php echo $row['turbidez']?>">
+                                <input type="text" class="form-control" placeholder="Turbidez" name="turbidez" value="<?php echo $row['turbidez']?>">
                             </div>
 
                             <?php

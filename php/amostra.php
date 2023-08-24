@@ -110,6 +110,50 @@
             <p class="me-1">Data de coleta:</p>
             <p><?php echo formatarData($row['dataAnalise']) ?></p>
         </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Cota terreno:</p>
+            <p><?php echo $row['cotaTerreno']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Profundidade final:</p>
+            <p><?php echo $row['profundidadeFinal']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Nivel dinâmico:</p>
+            <p><?php echo $row['nivelDinamico']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Nivel estático:</p>
+            <p><?php echo $row['nivelEstatico']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Vazão</p>
+            <p><?php echo $row['vazaoEstabilizacao']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Condutividade:</p>
+            <p><?php echo $row['condutividade']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Cor:</p>
+            <p><?php echo $row['cor']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Cor parâmetro:</p>
+            <p><?php echo $row['corParametro']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Odor:</p>
+            <p><?php echo $row['odor']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Temperatura:</p>
+            <p><?php echo $row['temperatura']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Turbidez:</p>
+            <p><?php echo $row['turbidez']?></p>
+        </div>
         <?php while ($row5 = mysqli_fetch_assoc($query4)) {
             $titulo = $row5['titulo'];
             $visibilidade = $row5['visibilidade'];
