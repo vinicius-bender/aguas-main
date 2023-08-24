@@ -43,8 +43,8 @@
                     <form action="amostras.php" method="get" class="d-flex">
                         <input type="text" name="busca" class="form-control">
                         <select name="valor" class="form-control">
-                            <option value="dataColeta" selected>Data de coleta</option>
-                            <option value="dataReferencia">Data de referencia</option>
+                            <option value="dataPerfuracao" selected>Data de perfuração</option>
+                            <option value="dataAnalise">Data de análise</option>
                             <option value="idAmostra">Número da amostra</option>
                         </select>
                         <button type="submit" class="btn btn-outline-dark ms-2">Buscar</button>
@@ -72,8 +72,8 @@
                 $dataOriginal = $puxa['dataAnalise'];
                 $novaData = date("d-m-Y", strtotime($dataOriginal));
 
-                $idLocal = $puxa['ponto'];
-                $busca2 = mysqli_query($link,"SELECT * FROM LOCAL WHERE ponto = $idLocal") or die (mysqli_error($link));
+                $ponto = $puxa['ponto'];
+                $busca2 = mysqli_query($link,"SELECT * FROM LOCAL WHERE ponto = '$ponto'") or die (mysqli_error($link));
                 $puxa2 = mysqli_fetch_array($busca2);
 
                 $nAmostra = $puxa['idAmostra'];
@@ -86,15 +86,15 @@
                         <h2 style='font-size: 20px;' class="m-0"> Amostra número <?php echo $nAmostra ?>, coletada dia: <?php echo $novaData ?> em: <?php echo $nomeL ?> </h2>
                         <div class='d-flex justify-content-end'>
                             <form action="amostra.php" method="get" class='me-2'>
-                                <input type="hidden" name="idAmostra" value="<?php echo $puxa['ponto'] ?>">
+                                <input type="hidden" name="ponto" value="<?php echo $puxa['ponto'] ?>">
                                 <button type="submit" class="btn btn-primary">Ver amostra</button>
                             </form>
                             <form action="editaramostra.php" method="get" class='me-2'>
-                                <input type="hidden" name="idAmostra" value="<?php echo $puxa['ponto']; ?>">
+                                <input type="hidden" name="ponto" value="<?php echo $puxa['ponto']; ?>">
                                 <button type="submit" class="btn btn-primary">Editar</button>
                             </form>
                             <form action="excluiramostra.php" method="post">
-                                <input type="hidden" name="idAmostra" value="<?php echo $puxa['ponto']; ?>">
+                                <input type="hidden" name="ponto" value="<?php echo $puxa['ponto']; ?>">
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Você deseja excluir esta amostra?');">Excluir</button>
                             </form>
                         </div>

@@ -2,9 +2,9 @@
     include_once "session.php"; 
     include_once "link.php";
 
-    $localColetado = mysqli_real_escape_string($link,$_POST['localColetado']);
-    $dataReferencia = mysqli_real_escape_string($link,$_POST['dataReferencia']);
-    $dataColeta = mysqli_real_escape_string($link,$_POST['dataColeta']);
+    $municipio = mysqli_real_escape_string($link,$_POST['municipio']);
+    $dataPerfuracao = mysqli_real_escape_string($link,$_POST['dataPerfuracao']);
+    $dataAnalise = mysqli_real_escape_string($link,$_POST['dataAnalise']);
 
     if($logado == NULL or FALSE){
         ?>  
@@ -13,13 +13,13 @@
         <?php
     }
     
-    if($dataReferencia == "" or $dataColeta == ""){
+    if($dataPerfuracao == "" or $dataAnalise == ""){
         ?>  
         <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript"> alert ("\n\n \u00c9 nessesario preencher as datas de refer\u00eancia e coleta \n\n")</SCRIPT>
         <SCRIPT language="JavaScript">window.location = "editaramostra.php?idAmostra=";</SCRIPT>
         <?php
         die();
-    }elseif ($localColetado == ""){
+    }elseif ($municipio == ""){
         ?>  
         <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript"> alert ("\n\n É selecionar um local \n\n")</SCRIPT>
         <SCRIPT language="JavaScript">window.location = "editaramostra.php";</SCRIPT>
@@ -30,8 +30,8 @@
     $idEditor = $idUsuarioS;
     $idAmostra = mysqli_real_escape_string($link,$_POST['idAmostra']);
 
-    $colunas = array('idEditor', 'localColetado', 'dataReferencia', 'dataColeta');
-    $valores = array($idEditor, $localColetado, $dataReferencia, $dataColeta);
+    $colunas = array('idEditor', 'municipio', 'dataPerfuracao', 'dataAnalise');
+    $valores = array($idEditor, $municipio, $dataPerfuracao, $dataAnalise);
 
     $query = mysqli_query($link,"SELECT * FROM PERGUNTA");
 

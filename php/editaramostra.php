@@ -26,10 +26,18 @@
     include_once "navbarL.php";
     include_once "link.php";
 
-    $idAmostra = $_GET['ponto'];
-    $query = mysqli_query($link,"SELECT * FROM AMOSTRA WHERE ponto = $idAmostra");
+    $ponto = $_GET['ponto'];
+    $query = mysqli_query($link,"SELECT * FROM AMOSTRA WHERE ponto = '$ponto'");
     $row = mysqli_fetch_assoc($query);
-    $query3 = mysqli_query($link,"SELECT * FROM PERGUNTA") or die (mysqli_error($link));
+    // $query3 = mysqli_query($link,"SELECT * FROM PERGUNTA") or die (mysqli_error($link));
+
+    function formatarData($dataOriginal) {
+        $date_input = strtotime($dataOriginal); 
+        $novaData  = date("Y-m-d", $date_input);
+        // $novaData = strtotime($time_input);
+        
+        echo $novaData;
+    }
 ?>
     <div class='container-fluid mt-5'>
         <div class='row'>
@@ -74,24 +82,78 @@
                             ?>
                             </select>
                             <div class="mb-3 mt-3">
-                                <label for="dataReferencia" class="form-label">Data de referência:</label>
-                                <input type="date" class="form-control" value="<?php echo $row['dataReferencia']?>" name="dataReferencia">
+                                <label for="dataPerfuracao" class="form-label">Data de perfuração (Mês/Dia/Ano):</label>
+                                <input type="date" class="form-control" value="<?php echo formatarData($row['dataPerfuracao'])?>" name="dataPerfuracao">
                             </div>
                             <div class="mb-3 mt-3">
-                                <label for="data" class="form-label">Data de coleta:</label>
-                                <input type="date" class="form-control" value="<?php echo $row['dataColeta']?>" name="dataColeta">
+                                <label for="data" class="form-label">Data de análise(Mês/Dia/Ano):</label>
+                                <input type="date" class="form-control" value="<?php echo formatarData($row['dataAnalise'])?>" name="dataAnalise">
                             </div>
-                            <?php while ($row3 = mysqli_fetch_assoc($query3)) {
-                                $titulo = $row3['titulo']
-                            ?>
+                            
                             <div class="mb-3 mt-3">
-                                <label class="form-label"><?php echo $titulo ?></label>
-                                <input type="text" class="form-control" placeholder="<?php echo $titulo?>" name="<?php echo $row3['idPergunta']?>" value="<?php echo $row[$titulo]?>">                   
+                                <label class="form-label">Cota terreno:</label>
+                                <input type="text" class="form-control" placeholder="Cota terreno" name="<?php echo $row['cotaTerreno']?>" value="<?php echo $row['cotaTerreno']?>">                  
                             </div>
+                            
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Profundidade final:</label>
+                                <input type="text" class="form-control" placeholder="Profundidade final" name="<?php echo $row['profundidadeFinal']?>" value="<?php echo $row['profundidadeFinal']?> metros">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Nível dinâmico:</label>
+                                <input type="text" class="form-control" placeholder="Nível dinâmico" name="<?php echo $row['nivelDinamico']?>" value="<?php echo $row['nivelDinamico']?>">
+                            </div>
+                            
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Nível Estático:</label>
+                                <input type="text" class="form-control" placeholder="Nível Estático" name="<?php echo $row['nivelEstatico']?>" value="<?php echo $row['nivelEstatico']?>">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Vazão:</label>
+                                <input type="text" class="form-control" placeholder="Vazão" name="<?php echo $row['vazaoEstabilizacao']?>" value="<?php echo $row['vazaoEstabilizacao']?>">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Condutividade:</label>
+                                <input type="text" class="form-control" placeholder="Condutividade" name="<?php echo $row['condutividade']?>" value="<?php echo $row['condutividade']?>">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Cor:</label>
+                                <input type="text" class="form-control" placeholder="Cor" name="<?php echo $row['cor']?>" value="<?php echo $row['cor']?>">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Cor Parâmetro:</label>
+                                <input type="text" class="form-control" placeholder="Cor Parâmetro" name="<?php echo $row['corParametro']?>" value="<?php echo $row['corParametro']?>">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Odor:</label>
+                                <input type="text" class="form-control" placeholder="Odor" name="<?php echo $row['odor']?>" value="<?php echo $row['odor']?>">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Sabor:</label>
+                                <input type="text" class="form-control" placeholder="Sabor" name="<?php echo $row['sabor']?>" value="<?php echo $row['sabor']?>">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Temperatura:</label>
+                                <input type="text" class="form-control" placeholder="Temperatura" name="<?php echo $row['temperatura']?>" value="<?php echo $row['temperatura']?> °C">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Turbidez:</label>
+                                <input type="text" class="form-control" placeholder="Turbidez" name="<?php echo $row['turbidez']?>" value="<?php echo $row['turbidez']?>">
+                            </div>
+
                             <?php
-                            }
+                            
                             ?>
-                            <input type="hidden" name="idAmostra" value="<?php echo $idAmostra; ?>">
+                            <input type="hidden" name="ponto" value="<?php echo $ponto; ?>">
                             <button type="submit" class="btn btn-primary">Enviar</button>
                         </form>
                     </div>

@@ -22,9 +22,9 @@
         include_once "navbarL.php";
     }
 
-    $idAmostra = $_GET['ponto'];
+    $ponto = $_GET['ponto'];
 
-    $query = mysqli_query($link,"SELECT * FROM AMOSTRA WHERE ponto = $idAmostra") or die (mysqli_error($link));
+    $query = mysqli_query($link,"SELECT * FROM amostra WHERE ponto = '$ponto'") or die (mysqli_error($link));
     $row = mysqli_fetch_assoc($query);
     if(mysqli_num_rows($query) == 0){
         ?>
@@ -33,13 +33,13 @@
         <?php
     }
     
-    $idLocal = $row['ponto'];
+    $ponto = $row['ponto'];
     $idCriador = $row['idCriador'];
     $idEditor = $row['idEditor'];
 
-    $query2 = mysqli_query($link,"SELECT nome, ponto FROM LOCAL WHERE ponto = $idLocal") or die (mysqli_error($link));
-    $query3 = mysqli_query($link,"SELECT nome FROM USUARIO WHERE idUsuario = $idCriador") or die (mysqli_error($link));
-    $query5 = mysqli_query($link,"SELECT * FROM PERGUNTA"); 
+    $query2 = mysqli_query($link,"SELECT nome, ponto FROM LOCAL WHERE ponto = '$ponto'") or die (mysqli_error($link));
+    $query3 = mysqli_query($link,"SELECT nome FROM USUARIO WHERE idUsuario = '$idCriador'") or die (mysqli_error($link));
+    $query4 = mysqli_query($link,"SELECT * FROM PERGUNTA"); 
 
     $row2 = mysqli_fetch_array($query2);
     $row3 = mysqli_fetch_assoc($query3);
@@ -60,7 +60,7 @@
         <div class='container-fluid card col-10 m-5 p-2'>
             <div class="text-center">
                 <h1>Informações da amostra:</h1>
-                <p>Amostra coletada no dia: <?php echo formatarData($row['dataColeta']) ?> em <?php echo $row2['nome'] ?></p>
+                <p>Amostra coletada no dia: <?php echo formatarData($row['dataAnalise']) ?> em <?php echo $row2['nome'] ?></p>
                 
                 <?php 
                 if ($logado == TRUE) {
@@ -84,14 +84,14 @@
             </div>
 
 <?php
-    if ($logado == TRUE) {?>
+    if ($logado === TRUE) {?>
         <div class='d-flex justify-content-center'>
             <form action="editaramostra.php" method="get" class='me-2'>
-                <input type="hidden" name="idAmostra" value="<?php echo $row['ponto']; ?>">
+                <input type="hidden" name="ponto" value="<?php echo $row['ponto']; ?>">
                 <button type="submit" class="btn btn-primary">Editar</button>
             </form>
             <form action="excluiramostra.php" method="post">
-                <input type="hidden" name="idAmostra" value="<?php echo $row['ponto']; ?>">
+                <input type="hidden" name="ponto" value="<?php echo $row['ponto']; ?>">
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Você deseja excluir esta amostra?');">Excluir</button>
             </form>
         </div>
@@ -110,7 +110,7 @@
             <p class="me-1">Data de coleta:</p>
             <p><?php echo formatarData($row['dataAnalise']) ?></p>
         </div>
-        <?php while ($row5 = mysqli_fetch_assoc($query5)) {
+        <?php while ($row5 = mysqli_fetch_assoc($query4)) {
             $titulo = $row5['titulo'];
             $visibilidade = $row5['visibilidade'];
             if($logado == TRUE or $visibilidade == 1){
