@@ -109,7 +109,7 @@
                 <div class='card'>
                     <div class='card-body'>
                         <div class='d-flex justify-content-start'>
-                            <h2 style="font-size: 20px;" class='align-self-center mb-0'>Amostra número <?php echo $puxa2['idAmostra']?> coletada dia <?php echo $novaData ?></h2>
+                            <h2 style="font-size: 20px;" class='align-self-center mb-0'>Ponto do poço: <?php echo $puxa2['ponto']?> - coletada dia <?php echo $novaData ?></h2>
                         </div>
                         <div class='d-flex justify-content-end'>
                             <a class='btn btn-primary align-self-center ' href="amostra.php?ponto=<?php echo $puxa2['ponto']?>">Ver Mais</a> <br>

@@ -69,7 +69,7 @@
                                         idMarcador['<?php echo $row2['ponto']; ?>'] = L.marker([<?php echo $row2['lat']?>, <?php echo $row2['lng']?>], {icon: Marcador,}).addTo(map).addEventListener("click", mudarLocal2);
                                         function mudarLocal2(e){
                                             document.getElementById('local').value = "<?php echo $row2['ponto']; ?>"
-                                            mudarLocal()
+                                            mudarLocal();
                                         };
                                     </script>
                                 <?php
@@ -97,7 +97,7 @@
                             
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Profundidade final:</label>
-                                <input type="text" class="form-control" placeholder="Profundidade final" name="profundidadeFinal" value="<?php echo $row['profundidadeFinal']?> metros">
+                                <input type="text" class="form-control" placeholder="Profundidade final" name="profundidadeFinal" value="<?php echo $row['profundidadeFinal']?>">
                             </div>
 
                             <div class="mb-3 mt-3">
@@ -111,7 +111,12 @@
                             </div>
 
                             <div class="mb-3 mt-3">
-                                <label class="form-label">Vazão:</label>
+                                <label class="form-label">Vazão específica:</label>
+                                <input type="text" class="form-control" placeholder="Vazão" name="vazaoEspecifica" value="<?php echo $row['vazaoEspecifica']?>">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Vazão estabilização:</label>
                                 <input type="text" class="form-control" placeholder="Vazão" name="vazaoEstabilizacao" value="<?php echo $row['vazaoEstabilizacao']?>">
                             </div>
 

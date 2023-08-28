@@ -68,16 +68,16 @@
 </div>
     <script src="../script/map.js"></script>
     <script>
-        var marcador = {};
-        map.on('click', function(e) {
+        // var marcador = {};
+        // map.on('click', function(e) {
 
-            if (marcador != undefined) {
-                map.removeLayer(marcador);
-            };
-            marcador = L.marker([e.latlng.lat,e.latlng.lng],{icon: Adicionar}).addTo(map);  
-            document.getElementById('lat').value = e.latlng.lat;
-            document.getElementById('lng').value = e.latlng.lng;
-        });
+        //     if (marcador != undefined) {
+        //         map.removeLayer(marcador);
+        //     };
+        //     marcador = L.marker([e.latlng.lat,e.latlng.lng],{icon: Adicionar}).addTo(map);  
+        //     document.getElementById('lat').value = e.latlng.lat;
+        //     document.getElementById('lng').value = e.latlng.lng;
+        // });
         function mudarMunicipio(x){
             if(x == "iffar/ufsm"){
                 map.setView([-27.394269338962207, -53.42852956659619]);

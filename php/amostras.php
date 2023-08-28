@@ -76,14 +76,14 @@
                 $busca2 = mysqli_query($link,"SELECT * FROM LOCAL WHERE ponto = '$ponto'") or die (mysqli_error($link));
                 $puxa2 = mysqli_fetch_array($busca2);
 
-                $nAmostra = $puxa['idAmostra'];
+                $nAmostra = $puxa['ponto'];
                 $nomeL = $puxa2['nome'];
 
     ?>
 
                 <div class='card mb-1'>
                     <div class='card-body d-flex justify-content-between'>
-                        <h2 style='font-size: 20px;' class="m-0"> Amostra número <?php echo $nAmostra ?>, coletada dia: <?php echo $novaData ?> em: <?php echo $nomeL ?> </h2>
+                        <h2 style='font-size: 20px;' class="m-0">Ponto do poço: <?php echo $nAmostra ?> - coletada dia: <?php echo $novaData ?> em: <?php echo $nomeL ?> </h2>
                         <div class='d-flex justify-content-end'>
                             <form action="amostra.php" method="get" class='me-2'>
                                 <input type="hidden" name="ponto" value="<?php echo $puxa['ponto'] ?>">

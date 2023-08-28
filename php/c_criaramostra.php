@@ -8,7 +8,7 @@
     $dataColeta = mysqli_real_escape_string($link,$_POST['dataColeta']);
     $idCriador = $idUsuarioS;
 
-    $colunas = array('idCriador', 'localColetado', 'dataReferencia', 'dataColeta');
+    $colunas = array('idCriador', 'municipio', 'dataPerfuracao', 'dataAnalise');
     $valores = array($idCriador, $localColetado, $dataReferencia, $dataColeta);
 
     if($logado == FALSE or NULL){
@@ -25,16 +25,16 @@
         die();
     }
 
-    $query = mysqli_query($link,"SELECT * FROM PERGUNTA");
+    // $query = mysqli_query($link,"SELECT * FROM PERGUNTA");
 
-    while ($row = mysqli_fetch_assoc($query)) {
+    // while ($row = mysqli_fetch_assoc($query)) {
 
-        $valor = $row['idPergunta'];
-        $coluna = $row['titulo'];
+    //     $valor = $row['idPergunta'];
+    //     $coluna = $row['titulo'];
 
-        $colunas[] = $coluna;
-        $valores[] = $_POST[$valor];
-    }
+    //     $colunas[] = $coluna;
+    //     $valores[] = $_POST[$valor];
+    // }
 
 
     $colunasStr = '`' . implode('`, `', $colunas) . '`';

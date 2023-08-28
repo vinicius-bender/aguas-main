@@ -60,7 +60,7 @@
         <div class='container-fluid card col-10 m-5 p-2'>
             <div class="text-center">
                 <h1>Informações da amostra:</h1>
-                <p>Amostra coletada no dia: <?php echo formatarData($row['dataAnalise']) ?> em <?php echo $row2['nome'] ?></p>
+                <p>Amostra coletada no dia: <?php echo formatarData($row['dataAnalise']) ?> em <?php echo $row2['nome'] ?> - <?php echo $row['municipio']?></p>
                 
                 <?php 
                 if ($logado == TRUE) {

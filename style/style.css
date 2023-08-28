@@ -10,6 +10,9 @@
 .afooter{
     font-size: 10px;
 }
+.me-1{
+    font-weight: 700;
+}
 @media (max-width: 767px) {
     .custom-height {
         height: 30vh;
