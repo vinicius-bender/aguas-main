@@ -74,22 +74,73 @@
                                     ?>
                                 </select>
                                 <div class="mb-3 mt-3">
-                                    <label for="dataReferencia" class="form-label">Data de referência:</label>
-                                    <input type="date" class="form-control" name="dataReferencia">
+                                    <label for="ponto" class="form-label">Ponto:</label>
+                                    <input type="text" class="form-control" name="ponto">
                                 </div>
                                 <div class="mb-3 mt-3">
-                                    <label for="data" class="form-label">Data de coleta:</label>
-                                    <input type="date" class="form-control" id="data" name="dataColeta">
+                                    <label for="municipio" class="form-label">Municipio:</label>
+                                    <input type="text" class="form-control" name="municipio">
                                 </div>
-                                <?php while ($row2 = mysqli_fetch_assoc($query2)) {
-                                ?>
                                 <div class="mb-3 mt-3">
-                                    <label class="form-label"><?php echo $row2['titulo']?></label>
-                                    <input type="text" class="form-control" placeholder="<?php echo $row2['titulo']?>" name="<?php echo $row2['idPergunta']?>">                   
+                                    <label for="dataPerfuracao" class="form-label">Data de Perfuração:</label>
+                                    <input type="text" class="form-control" name="dataPerfuracao">
                                 </div>
-                                <?php
-                                }
-                                ?>
+                                <div class="mb-3 mt-3">
+                                    <label for="dataAnalise" class="form-label">Data de Análise:</label>
+                                    <input type="text" class="form-control" id="data" name="dataAnalise">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="cotaTerreno" class="form-label">Cota terreno:</label>
+                                    <input type="text" class="form-control" name="cotaTerreno">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="profundidadeFinal" class="form-label">Profundidade final:</label>
+                                    <input type="text" class="form-control" name="profundidadeFinal">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="nivelDinamico" class="form-label">Nível dinâmico:</label>
+                                    <input type="text" class="form-control" name="nivelDinamico">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="nivelEstatico" class="form-label">Nível estático:</label>
+                                    <input type="text" class="form-control" name="nivelEstatico">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="vazaoEspecifica" class="form-label">Vazãoo específica:</label>
+                                    <input type="text" class="form-control" name="vazaoEspecifica">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="vazaoEstabilizacao" class="form-label">Vazãoo estabilização:</label>
+                                    <input type="text" class="form-control" name="vazaoEstabilizacao">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="condutividade" class="form-label">Condutividade:</label>
+                                    <input type="text" class="form-control" name="condutividade">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="cor" class="form-label">Cor:</label>
+                                    <input type="text" class="form-control" name="cor">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="corParametro" class="form-label">Cor parâmetro:</label>
+                                    <input type="text" class="form-control" name="corParametro">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="odor" class="form-label">Odor:</label>
+                                    <input type="text" class="form-control" name="odor">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="sabor" class="form-label">Sabor:</label>
+                                    <input type="text" class="form-control" name="sabor">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="temperatura" class="form-label">Temperatura:</label>
+                                    <input type="text" class="form-control" name="temperatura">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="turbidez" class="form-label">Turbidez:</label>
+                                    <input type="text" class="form-control" name="turbidez">
+                                </div>
                                 <button type="submit" class="btn btn-primary">Enviar</button>
                             </form>
                         </div>

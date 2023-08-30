@@ -10,6 +10,7 @@
     }
 
     $nome = mysqli_real_escape_string($link,$_POST['nome']);
+    $ponto = mysqli_real_escape_string($link,$_POST['ponto']);
     $lat = mysqli_real_escape_string($link,$_POST['lat']);
     $lng = mysqli_real_escape_string($link,$_POST['lng']);
     $tipo = mysqli_real_escape_string($link,$_POST['tipo']);
@@ -22,6 +23,11 @@
     if($nome == ""){
         ?>  
         <script language="JavaScript" type="text/javascript"> alert ("\n\n É necessário preencher um nome para o local \n\n")</script>
+        <script language="JavaScript">window.location = "criarlocal.php";</script>
+        <?php
+    } elseif ($ponto == "") {
+        ?>  
+        <script language="JavaScript" type="text/javascript"> alert ("\n\n É necessário preencher um ponto para o local \n\n")</script>
         <script language="JavaScript">window.location = "criarlocal.php";</script>
         <?php
     } elseif ($lat == ""){
@@ -39,7 +45,7 @@
             $foto_path = "../img/nhfotos.png";
         }
         move_uploaded_file($foto_tmp, $foto_path);
-        mysqli_query($link,"INSERT INTO LOCAL (idCriador, nome, lat, lng, tipo, foto) VALUES ('$idUsuarioS','$nome','$lat','$lng','$tipo','$foto_path')");
+        mysqli_query($link,"INSERT INTO LOCAL (ponto, idCriador, idEditor, nome, lat, lng, tipo, foto) VALUES ('$ponto', '$idUsuarioS', '$idUsuarioS', '$nome', '$lat', '$lng','$tipo', '$foto_path')");
         ?>
         <script language="JavaScript" type="text/javascript"> alert ("\n\n Local registrado com sucesso! \n\n")</script>
         <script language="JavaScript">window.location = "index.php";</script>

@@ -46,16 +46,20 @@
                     <input type="text" class="form-control" id="nome" placeholder="Nome do local" name="nome">
                 </div>
                 <div class="mb-3 mt-3">
+                    <label for="nome" class="form-label">Ponto:</label>
+                    <input type="text" class="form-control" id="ponto" placeholder="Ponto do local" name="ponto">
+                </div>
+                <div class="mb-3 mt-3">
                     <label for="img" class="form-label">Foto do Local:</label>
                     <input type="file" class="form-control" id="img" placeholder="Nome do local" name="foto">
                 </div>
                 <div class="mb-3">
                     <label for="lat" class="form-label">Latitude:</label>
-                    <input type="text" class="form-control" readonly id="lat" placeholder="Latitude" name="lat" value="">
+                    <input type="text" class="form-control" id="lat" placeholder="Latitude" name="lat">
                 </div>
                 <div class="mb-3">
                     <label for="lat" id="lat" class="form-label">Longitude:</label>
-                    <input type="text" class="form-control" readonly id="lng" placeholder="Longitude" name="lng" value="">
+                    <input type="text" class="form-control" id="lng" placeholder="Longitude" name="lng">
                 </div>
                 <div class="mb-3">
                     <label for="obs" class="form-label">Tipo de local:</label>
@@ -80,15 +84,15 @@
         // });
         function mudarMunicipio(x){
             if(x == "iffar/ufsm"){
-                map.setView([-27.394269338962207, -53.42852956659619]);
+                map.setView([-27.394269338962207, -53.42852956659619], 15);
             }else if(x == "frederico"){
-                map.setView([-27.358607273317116, -53.399438762936015]);
+                map.setView([-27.358607273317116, -53.399438762936015], 15);
             }else if(x == "seberi"){
-                map.setView([-27.483842144692485, -53.39941672588102]);
+                map.setView([-27.483842144692485, -53.39941672588102], 15);
             }else if(x == "taquarucu"){
-                map.setView([-27.399256401092764, -53.46704817973637]);
+                map.setView([-27.399256401092764, -53.46704817973637], 15);
             }else if(x == "palmitinho"){
-                map.setView([-27.35530307450152, -53.55827192685815]);
+                map.setView([-27.35530307450152, -53.55827192685815], 15);
             }
         }
     </script>

@@ -11,7 +11,7 @@ var Marcador = L.icon({
     iconAnchor:   [16, 32],
 });
 var Adicionar = L.icon({
-    iconUrl: 'symbol.png',
+    iconUrl: 'iconepoco.png',
 
     iconSize:     [32, 32],
     iconAnchor:   [16, 32], 
