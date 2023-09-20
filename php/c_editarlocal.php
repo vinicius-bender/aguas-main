@@ -21,7 +21,7 @@
     $foto_tmp = $_FILES['foto']['tmp_name'];
     $foto_extension = strtolower(pathinfo($foto, PATHINFO_EXTENSION));
     $foto_filename = uniqid() . '_' . time() . '.' . $foto_extension;
-    $foto_path = "img/" . $foto_filename;
+    $foto_path = "../img/" . $foto_filename;
 
     if($nome == ""){
         ?>  

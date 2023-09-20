@@ -39,11 +39,9 @@
 
     $query2 = mysqli_query($link,"SELECT nome, ponto FROM LOCAL WHERE ponto = '$ponto'") or die (mysqli_error($link));
     $query3 = mysqli_query($link,"SELECT nome FROM USUARIO WHERE idUsuario = '$idCriador'") or die (mysqli_error($link));
-    $query4 = mysqli_query($link,"SELECT * FROM PERGUNTA"); 
 
     $row2 = mysqli_fetch_array($query2);
     $row3 = mysqli_fetch_assoc($query3);
-    $row4 = mysqli_fetch_assoc($query4);
 
     date_default_timezone_set('America/Sao_Paulo');
 
@@ -76,7 +74,7 @@
                     ?>
                     <?php if($idEditor != 0){
                         ?>
-                    <p>Editado pela ultima vez por: <?php echo $row4['nome'] ?></p>
+                    <p>Editado pela ultima vez por: <?php echo $row3['nome'] ?></p>
                         <?php
                     }
                 }
