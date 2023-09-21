@@ -89,7 +89,7 @@
                 <button type="submit" class="btn btn-primary">Editar</button>
             </form>
             <form action="excluiramostra.php" method="post">
-                <input type="hidden" name="ponto" value="<?php echo $row['ponto']; ?>">
+                <input type="hidden" name="idAmostra" value="<?php echo $row['idAmostra']; ?>">
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Você deseja excluir esta amostra?');">Excluir</button>
             </form>
         </div>
