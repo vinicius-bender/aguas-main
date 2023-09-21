@@ -12,7 +12,7 @@
     $lat = mysqli_real_escape_string($link,$_POST['lat']);
     $lng = mysqli_real_escape_string($link,$_POST['lng']);
     $tipo = mysqli_real_escape_string($link,$_POST['tipo']);
-    $idLocal = $_POST['ponto'];
+    $ponto = $_POST['ponto'];
     
     $busca = mysqli_query($link,"SELECT foto FROM LOCAL") or die (mysqli_error($link));
     $foto_original = mysqli_fetch_assoc($busca);
@@ -26,29 +26,29 @@
     if($nome == ""){
         ?>  
         <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript"> alert ("\n\n É nessesario preencher um nome para o local \n\n")</SCRIPT>
-        <SCRIPT language="JavaScript">window.location = "editarlocal.php?idLocal=<?php echo $idLocal?>";</SCRIPT>
+        <SCRIPT language="JavaScript">window.location = "editarlocal.php?ponto=<?php echo $ponto?>";</SCRIPT>
         <?php
     }elseif ($lat == ""){
         ?>  
         <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript"> alert ("\n\n É nessesario preencher a latitude do local \n\n")</SCRIPT>
-        <SCRIPT language="JavaScript">window.location = "editarlocal.php?idLocal=<?php echo $idLocal?>";</SCRIPT>
+        <SCRIPT language="JavaScript">window.location = "editarlocal.php?ponto=<?php echo $ponto?>";</SCRIPT>
         <?php
     }elseif ($lng == ""){
         ?>  
         <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript"> alert ("\n\n É nessesario preencher a longitude do local \n\n")</SCRIPT>
-        <SCRIPT language="JavaScript">window.location = "editarlocal.php?idLocal=<?php echo $idLocal?>";</SCRIPT>
+        <SCRIPT language="JavaScript">window.location = "editarlocal.php?ponto=<?php echo $ponto?>";</SCRIPT>
         <?php
     }else{
         if ($foto ==""){
-            mysqli_query($link,"UPDATE local SET nome='$nome',lat='$lat',lng='$lng',tipo='$tipo' WHERE ponto='$idLocal'");
+            mysqli_query($link,"UPDATE local SET nome='$nome',lat='$lat',lng='$lng',tipo='$tipo' WHERE ponto='$ponto'");
         } else {
             move_uploaded_file($foto_tmp, $foto_path); 
-            mysqli_query($link,"UPDATE local SET nome='$nome',lat='$lat',lng='$lng',tipo='$tipo',foto='$foto_path' WHERE ponto='$idLocal'");
+            mysqli_query($link,"UPDATE local SET nome='$nome',lat='$lat',lng='$lng',tipo='$tipo',foto='$foto_path' WHERE ponto='$ponto'");
             unlink($foto_original);
         }
         ?>
         <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript"> alert ("\n\n Salvo com sucesso \n\n")</SCRIPT>
-        <SCRIPT language="JavaScript">window.location = "local.php?idLocal=<?php echo $idLocal?>";</SCRIPT>
+        <SCRIPT language="JavaScript">window.location = "local.php?ponto=<?php echo $ponto?>";</SCRIPT>
         <?php
     }
 ?> 

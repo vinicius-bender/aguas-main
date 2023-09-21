@@ -71,6 +71,7 @@
                 
                 $dataOriginal = $puxa['dataAnalise'];
                 $novaData = date("d-m-Y", strtotime($dataOriginal));
+                $novaData = str_replace('-', '/', $novaData);
 
                 $ponto = $puxa['ponto'];
                 $busca2 = mysqli_query($link,"SELECT * FROM LOCAL WHERE ponto = '$ponto'") or die (mysqli_error($link));
@@ -83,7 +84,7 @@
 
                 <div class='card mb-1'>
                     <div class='card-body d-flex justify-content-between'>
-                        <h2 style='font-size: 20px;' class="m-0">Ponto do poço: <?php echo $nAmostra ?> - coletada dia: <?php echo $novaData ?> em: <?php echo $nomeL ?> </h2>
+                        <h2 style='font-size: 20px;' class="m-0">Ponto do poço: <?php echo $nAmostra ?> - Coletada dia: <?php echo $novaData ?> em: <?php echo $nomeL ?> </h2>
                         <div class='d-flex justify-content-end'>
                             <form action="amostra.php" method="get" class='me-2'>
                                 <input type="hidden" name="ponto" value="<?php echo $puxa['ponto'] ?>">

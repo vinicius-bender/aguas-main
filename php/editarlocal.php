@@ -82,31 +82,15 @@
 </div>
     <script src="../script/map.js"></script>
     <script>
-        var marcador = L.marker([<?php echo $puxa['lat']?>, <?php echo $puxa['lng']?>],{icon: Adicionar}).addTo(map);;
-        map.on('click', function(e) {
+        var marcador = L.marker([<?php echo $puxa['lat']?>, <?php echo $puxa['lng']?>],{icon: Adicionar}).addTo(map);
+        map.setView([<?php echo $puxa['lat']?>, <?php echo $puxa['lng']?>], 15);
+        // map.on('click', function(e) {
 
-            if (marcador != undefined) {
-                map.removeLayer(marcador);
-            };
-            marcador = L.marker([e.latlng.lat,e.latlng.lng],{icon: Adicionar}).addTo(map); 
-            document.getElementById('lat').value = e.latlng.lat;
-            document.getElementById('long').value = e.latlng.lng;
-        });
-
+        //     if (marcador != undefined) {
+        //         map.removeLayer(marcador);
+        //     };
+        //     marcador = L.marker([e.latlng.lat,e.latlng.lng],{icon: Adicionar}).addTo(map); 
+        //     document.getElementById('lat').value = e.latlng.lat;
+        //     document.getElementById('long').value = e.latlng.lng;
+        // });
     </script>
-<?php 
-        $busca2 = mysqli_query($link,"SELECT * FROM LOCAL WHERE ponto != $ponto") or die (mysqli_error($link));
-
-        if (isset($busca2) && mysqli_num_rows($busca2) > 0) {
-            while ($puxa2 = mysqli_fetch_assoc($busca2)) {
-            ?> 
-            <script>
-                L.marker([<?php echo $puxa2['lat']?>, <?php echo $puxa2['lng']?>], {icon: Marcador}).addTo(map).addEventListener("hover", myFunction);
-                function myFunction() {
-
-                };
-            </script> 
-            <?php
-            }
-        }
-?>

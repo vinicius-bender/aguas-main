@@ -32,6 +32,9 @@
     $ponto = mysqli_real_escape_string($link,$_POST['ponto']);
 
     // Dados do formulário
+    $novoNome = $_POST['localColetado'];
+    $dataPerfuracao = $_POST['dataPerfuracao'];
+    $dataAnalise = $_POST['dataAnalise'];
     $novoCotaTerreno = $_POST['cotaTerreno'];
     $novoProfundidade = $_POST['profundidadeFinal'];
     $novoNivelDinamico = $_POST['nivelDinamico'];
@@ -44,6 +47,15 @@
     $novoSabor= $_POST['sabor'];
     $novoTemperatura = $_POST['temperatura'];
     $novoTurbidez = $_POST['turbidez'];
+
+    function formatarData($dataOriginal) {
+        $novaData = date("m-d-Y", strtotime($dataOriginal));
+        $novaData = str_replace('-', '/', $novaData);
+        return $novaData;
+    }
+
+    $dataPerfuracaoFormatada = formatarData($dataPerfuracao);
+    $dataAnaliseFormatada = formatarData($dataAnalise);
     
     $conn = new mysqli('localhost', 'root', 'rootadmin', 'siteaguas');
 
@@ -53,13 +65,19 @@
     }
 
     // Recuperar os dados existentes do banco de dados
-    $sql = "SELECT cotaTerreno, profundidadeFinal, nivelDinamico, nivelEstatico, vazaoEstabilizacao,  condutividade,
+    $sql = "SELECT dataPerfuracao, dataAnalise, cotaTerreno, profundidadeFinal, nivelDinamico, nivelEstatico, vazaoEstabilizacao,  condutividade,
     cor, odor, sabor, temperatura, turbidez FROM amostra WHERE ponto = '$ponto'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
     // Comparar os dados e construir a consulta UPDATE
     $updateFields = array();
+    if ($dataPerfuracao != $row['dataPerfuracao']) {
+        $updateFields[] = "dataPerfuracao = '$dataPerfuracaoFormatada'";
+    }
+    if ($dataAnalise != $row['dataAnalise']) {
+        $updateFields[] = "dataAnalise = '$dataAnaliseFormatada'";
+    }
     if ($novoCotaTerreno != $row['cotaTerreno']) {
         $updateFields[] = "cotaTerreno = '$novoCotaTerreno'";
     }
@@ -97,19 +115,24 @@
         $updateFields[] = "turbidez = '$novoTurbidez'";
     }
     
+    $updateNome = "UPDATE LOCAL SET nome='$novoNome' WHERE ponto='$ponto'";
+    if ($conn->query($updateNome) === TRUE) {
+        // echo "Dados atualizados com sucesso!";
+      } else {
+        echo "Erro na atualização: " . $conn->error;
+      }
 
     if (!empty($updateFields)) {
-        $updateQuery = "UPDATE amostra SET " . implode(', ', $updateFields) . " WHERE ponto = '$ponto'";
+        $updateQuery = "UPDATE AMOSTRA SET " . implode(', ', $updateFields) . " WHERE ponto = '$ponto'";
         if ($conn->query($updateQuery) === TRUE) {
             echo "Dados atualizados com sucesso!";
         } else {
             echo "Erro na atualização: " . $conn->error;
         }
-    } else {
-        echo "Nenhum dado foi alterado.";
-    }
+    } // else {
+    // echo "Nenhum dado foi alterado.";
+    // }
 
-    // mysqli_query($link,"UPDATE amostra SET cotaTerreno = '$setUpdate' WHERE ponto = '$ponto'");
     ?>
     <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript"> alert ("\n\n Salvo com sucesso \n\n")</SCRIPT>
     <SCRIPT language="JavaScript">window.location = "amostra.php?ponto=<?php echo $ponto ?>";</SCRIPT>

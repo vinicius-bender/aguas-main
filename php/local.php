@@ -33,6 +33,12 @@
     $busca4 = mysqli_query($link,"SELECT nome FROM USUARIO WHERE idUsuario = '$idEditor'") or die (mysqli_error($link));
     $puxa3 = mysqli_fetch_assoc($busca3);
     $puxa4 = mysqli_fetch_assoc($busca4);
+
+    function formatarData($dataOriginal) {
+        $novaData = date("d-m-Y", strtotime($dataOriginal));
+        $novaData = str_replace('-', '/', $novaData);
+        return $novaData;
+    }
 ?>
 <body>
     <div class='container-fluid'>
@@ -102,14 +108,14 @@
             <?php
         while ($puxa2 = mysqli_fetch_assoc($busca2)) {
 
-            $dataOriginal = $puxa2['dataAnalise'];
-            $novaData = date("d-m-Y", strtotime($dataOriginal));
+            // $dataOriginal = $puxa2['dataAnalise'];
+            // $novaData = date("d-m-Y", strtotime($dataOriginal));
 
             ?>
                 <div class='card'>
                     <div class='card-body'>
                         <div class='d-flex justify-content-start'>
-                            <h2 style="font-size: 20px;" class='align-self-center mb-0'>Ponto do poço: <?php echo $puxa2['ponto']?> - coletada dia <?php echo $novaData ?></h2>
+                            <h2 style="font-size: 20px;" class='align-self-center mb-0'>Ponto do poço: <?php echo $puxa2['ponto']?> - Coletada dia <?php echo formatarData($puxa2['dataAnalise']); ?></h2>
                         </div>
                         <div class='d-flex justify-content-end'>
                             <a class='btn btn-primary align-self-center ' href="amostra.php?ponto=<?php echo $puxa2['ponto']?>">Ver Mais</a> <br>

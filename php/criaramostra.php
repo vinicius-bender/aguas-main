@@ -83,11 +83,11 @@
                                 </div>
                                 <div class="mb-3 mt-3">
                                     <label for="dataPerfuracao" class="form-label">Data de Perfuração:</label>
-                                    <input type="text" class="form-control" name="dataPerfuracao">
+                                    <input type="text" class="form-control" name="dataPerfuracao" placeholder="dia-mês-ano">
                                 </div>
                                 <div class="mb-3 mt-3">
                                     <label for="dataAnalise" class="form-label">Data de Análise:</label>
-                                    <input type="text" class="form-control" id="data" name="dataAnalise">
+                                    <input type="text" class="form-control" name="dataAnalise" placeholder="dia-mês-ano">
                                 </div>
                                 <div class="mb-3 mt-3">
                                     <label for="cotaTerreno" class="form-label">Cota terreno:</label>
@@ -106,11 +106,11 @@
                                     <input type="text" class="form-control" name="nivelEstatico">
                                 </div>
                                 <div class="mb-3 mt-3">
-                                    <label for="vazaoEspecifica" class="form-label">Vazãoo específica:</label>
+                                    <label for="vazaoEspecifica" class="form-label">Vazão específica:</label>
                                     <input type="text" class="form-control" name="vazaoEspecifica">
                                 </div>
                                 <div class="mb-3 mt-3">
-                                    <label for="vazaoEstabilizacao" class="form-label">Vazãoo estabilização:</label>
+                                    <label for="vazaoEstabilizacao" class="form-label">Vazão estabilização:</label>
                                     <input type="text" class="form-control" name="vazaoEstabilizacao">
                                 </div>
                                 <div class="mb-3 mt-3">

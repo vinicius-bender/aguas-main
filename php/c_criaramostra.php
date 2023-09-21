@@ -38,11 +38,20 @@
         die();
     }
 
+    function formatarData($dataOriginal) {
+        $novaData = date("m-d-Y", strtotime($dataOriginal));
+        $novaData = str_replace('-', '/', $novaData);
+        return $novaData;
+    }
+
+    $dataPerfuracaoFormatada = formatarData($dataPerfuracao);
+    $dataAnaliseFormatada = formatarData($dataAnalise);
+
     // try{
     mysqli_query($link,"INSERT INTO amostra (ponto, municipio, idCriador, idEditor, dataPerfuracao, dataAnalise, cotaTerreno,
     profundidadeFinal, nivelDinamico, nivelEstatico, vazaoEspecifica, vazaoEstabilizacao, condutividade,
     cor, corParametro, odor, sabor, temperatura, turbidez)
-    VALUES ('$ponto', '$municipio', '$idCriador', '$idEditor', '$dataPerfuracao', '$dataAnalise', '$cotaTerreno', '$profundidadeFinal', 
+    VALUES ('$ponto', '$municipio', '$idCriador', '$idEditor', '$dataPerfuracaoFormatada', '$dataAnaliseFormatada', '$cotaTerreno', '$profundidadeFinal', 
     '$nivelDinamico', '$nivelEstatico', '$vazaoEspecifica', '$vazaoEstabilizacao', '$condutividade', '$cor', 
     '$corParametro', '$odor', '$sabor', '$temperatura', '$turbidez')");
     // }catch(Exception $erro){

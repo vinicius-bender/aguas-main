@@ -13,7 +13,6 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="crossorigin=""></script>
 </head>
 
-<body onLoad="mudarLocal()">
 <?php
     include_once "session.php";
         if ($logado == FALSE or NULL) {
@@ -28,15 +27,15 @@
 
     $ponto = $_GET['ponto'];
     $query = mysqli_query($link,"SELECT * FROM AMOSTRA WHERE ponto = '$ponto'");
+    $query2 = mysqli_query($link,"SELECT * FROM LOCAL  WHERE ponto = '$ponto'") or die (mysqli_error($link));
     $row = mysqli_fetch_assoc($query);
+    $row2 = mysqli_fetch_assoc($query2);
     // $query3 = mysqli_query($link,"SELECT * FROM PERGUNTA") or die (mysqli_error($link));
 
     function formatarData($dataOriginal) {
-        $date_input = strtotime($dataOriginal); 
-        $novaData  = date("Y-m-d", $date_input);
-        // $novaData = strtotime($time_input);
-        
-        echo $novaData;
+        $novaData = date("d-m-Y", strtotime($dataOriginal));
+        $novaData = str_replace('/', '-', $novaData);
+        return $novaData;
     }
 ?>
     <div class='container-fluid mt-5'>
@@ -53,41 +52,21 @@
                             <h1>Editar amostra</h1>
                             <p>Adicione as informações para editar a amostra</p>
                             <label for="data" class="form-label">Local de coleta:</label>
-                            <select id='local'class="form-control"  onchange='mudarLocal()' name="localColetado">
-                            <?php
-                                $query2 = mysqli_query($link,"SELECT * FROM LOCAL") or die (mysqli_error($link));
-                                if (isset($query2) && mysqli_num_rows($query2) > 0) {?>
-                                    <script>
-                                        idMarcador = {};
-
-                                    </script>
-                                <?php
-                                    while ($row2 = mysqli_fetch_assoc($query2)) {
-                                ?>
-                                    <option value="<?php echo $row2['ponto'];?>" <?php if($row2['ponto'] == $row['ponto']){echo 'selected';}?>><?php echo $row2['nome']; ?></option>
-                                    <script>
-                                        idMarcador['<?php echo $row2['ponto']; ?>'] = L.marker([<?php echo $row2['lat']?>, <?php echo $row2['lng']?>], {icon: Marcador,}).addTo(map).addEventListener("click", mudarLocal2);
-                                        function mudarLocal2(e){
-                                            document.getElementById('local').value = "<?php echo $row2['ponto']; ?>"
-                                            mudarLocal();
-                                        };
-                                    </script>
-                                <?php
-                                    }
-                                }else{
-                                ?>
-                                    <option value="">Não ha locais disponiveis</option>
-                                <?php
-                                }
-                            ?>
-                            </select>
+                            <input type="text" class="form-control" id="nome" placeholder="Nome do local" name="localColetado" readonly value="<?php echo $row2['nome']; ?>">
+                            <script>
+                                idMarcador = {};
+                            </script>
+                            <script>
+                                idMarcador['<?php echo $row2['ponto']; ?>'] = L.marker([<?php echo $row2['lat']?>, <?php echo $row2['lng']?>], {icon: Marcador,}).addTo(map);
+                                map.setView([<?php echo $row2['lat']?>, <?php echo $row2['lng']?>], 15);
+                            </script>
                             <div class="mb-3 mt-3">
-                                <label for="dataPerfuracao" class="form-label">Data de perfuração (Mês/Dia/Ano):</label>
-                                <input type="date" class="form-control" value="<?php echo formatarData($row['dataPerfuracao'])?>" name="dataPerfuracao">
+                                <label for="dataPerfuracao" class="form-label">Data de perfuração:</label>
+                                <input type="text" class="form-control" value="<?php echo formatarData($row['dataPerfuracao'])?>" name="dataPerfuracao" placeholder="dia-mês-ano">
                             </div>
                             <div class="mb-3 mt-3">
-                                <label for="data" class="form-label">Data de análise(Mês/Dia/Ano):</label>
-                                <input type="date" class="form-control" value="<?php echo formatarData($row['dataAnalise'])?>" name="dataAnalise">
+                                <label for="data" class="form-label">Data de análise:</label>
+                                <input type="text" class="form-control" value="<?php echo formatarData($row['dataAnalise'])?>" name="dataAnalise" placeholder="dia-mês-ano">
                             </div>
                             
                             <div class="mb-3 mt-3">
@@ -102,7 +81,7 @@
 
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Nível dinâmico:</label>
-                                <input type="text" class="form-control" placeholder="Nível dinâmico" name="nivelDinamico>" value="<?php echo $row['nivelDinamico']?>">
+                                <input type="text" class="form-control" placeholder="Nível dinâmico" name="nivelDinamico" value="<?php echo $row['nivelDinamico']?>">
                             </div>
                             
                             <div class="mb-3 mt-3">
@@ -154,10 +133,6 @@
                                 <label class="form-label">Turbidez:</label>
                                 <input type="text" class="form-control" placeholder="Turbidez" name="turbidez" value="<?php echo $row['turbidez']?>">
                             </div>
-
-                            <?php
-                            
-                            ?>
                             <input type="hidden" name="ponto" value="<?php echo $ponto; ?>">
                             <button type="submit" class="btn btn-primary">Enviar</button>
                         </form>
@@ -166,20 +141,4 @@
             </div>
         </div>
     </div>
-
-<script>
-    var valor1 = document.getElementById('local').value;
-    function mudarLocal(){
-        if(valor1 != undefined){
-            idMarcador[valor1].setIcon(Marcador)
-            idMarcador[document.getElementById('local').value].setIcon(Adicionar);
-            valor1 = document.getElementById('local').value
-            map.setView(idMarcador[document.getElementById('local').value].getLatLng())
-        } else {
-            idMarcador[document.getElementById('local').value].setIcon(Adicionar)
-            valor1 = document.getElementById('local').value
-            map.setView(idMarcador[document.getElementById('local').value].getLatLng())
-        }
-    };
-</script>
 </body>
