@@ -104,7 +104,7 @@ if (isset($query) && mysqli_num_rows($query) > 0) {
                 <h2>Anexos:</h2>
             <?php } ?>
             <?php if($row['link'] != null ){ ?>
-                <a class="btn btn-primary" href="<?php echo $row['link'] ?>">Link do artigo completo</a>
+                <a class="btn btn-primary" target="_blank" href="<?php echo $row['link'] ?>">Link do artigo completo</a>
             <?php } ?>
             <?php if($row['pdf'] != null ){ ?>
                 <a class="btn btn-primary" download href="<?php echo $row['pdf'] ?>">Baixar PDF</a>

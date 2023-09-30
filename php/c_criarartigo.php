@@ -9,10 +9,11 @@ $pdf = $_FILES['pdf']['name'];
 $pdf_tmp = $_FILES['pdf']['tmp_name'];
 $pdf_extension = strtolower(pathinfo($pdf, PATHINFO_EXTENSION));
 $pdf_filename = uniqid() . '_' . time() . '.' . $pdf_extension;
-$pdf_path = "pdf/" . $pdf_filename;
+$pdf_path = "../pdf/" . $pdf_filename;
 move_uploaded_file($pdf_tmp, $pdf_path);
 
 if ($logado == NULL or FALSE) {
+    echo ("ERRO NULL OR FALSE");
     ?>
     <script language="JavaScript" type="text/javascript"> alert("\n\n Conteudo restrito \n\n")</script>
     <script language="JavaScript">window.location = "index.php";</script>
@@ -23,11 +24,10 @@ if ($logado == NULL or FALSE) {
     <script language="JavaScript">window.location = "index.php";</script>
     <?php
 } else {
-
     if ($pdf != "") {
-        mysqli_query($link, "INSERT INTO artigo (nome, resumo, pdf, link) VALUES ('$nome','$resumo','$pdf_path','$links')");
+        mysqli_query($link, "INSERT INTO artigo (idCriador, nome, resumo, pdf, link) VALUES ('$idUsuarioS', '$nome','$resumo','$pdf_path','$links')");
     }else{
-        mysqli_query($link, "INSERT INTO artigo (nome, resumo, link) VALUES ('$nome','$resumo','$links')");
+        mysqli_query($link, "INSERT INTO artigo (idCriador, nome, resumo, link) VALUES ('$idUsuarioS', '$nome','$resumo','$links')");
     }
     ?>
     <script language="JavaScript" type="text/javascript"> alert("\n\n Artigo criado com sucesso! \n\n")</script>
