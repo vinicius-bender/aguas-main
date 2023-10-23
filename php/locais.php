@@ -29,6 +29,7 @@
         }
         
         $pesquisa = $_GET['busca'];
+        $pesquisa2 = $_GET['valor'];
 
     ?>
     <div class='container-fluid'>
@@ -42,6 +43,10 @@
                         <h2 class="me-2">Pesquisar por local:</h2>
                         <form action="locais.php" method="get" class="d-flex">
                             <input type="text" name="busca" class="form-control">
+                            <select name="valor" class="form-control">
+                                <option value="municipio" selected>Município</option>
+                                <option value="nome">Nome do local</option>
+                            </select>
                             <button type="submit" class="btn btn-outline-dark ms-2">Buscar</button>
                         </form>
                         <form action="locais.php" method="get" class="d-flex ms-2 me-5">
@@ -53,7 +58,14 @@
 
         date_default_timezone_set('America/Sao_Paulo');
         if(isset($pesquisa)){
-            $busca = mysqli_query($link,"SELECT * FROM LOCAL WHERE nome LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+            if ($pesquisa2 === "municipio"){
+                $busca = mysqli_query($link,"SELECT local.ponto, municipio, nome FROM amostra, local
+                WHERE amostra.ponto = local.ponto AND amostra.municipio LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+            }else{
+                $busca = mysqli_query($link,"SELECT local.ponto, municipio, nome FROM amostra, local
+                WHERE amostra.ponto = local.ponto AND local.nome LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+            }
+           
         }else{
             $busca = mysqli_query($link,"SELECT * FROM LOCAL");
         }

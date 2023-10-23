@@ -47,6 +47,9 @@
 
 
     function formatarData($dataOriginal) {
+        if ($dataOriginal == ""){
+            return "Sem dados";
+        }
         $novaData = date("d-m-Y", strtotime($dataOriginal));
         $novaData = str_replace('-', '/', $novaData);
         return $novaData;

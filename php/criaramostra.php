@@ -48,7 +48,7 @@
                                 <select id = 'local' class="form-control" onchange='mudarLocal()' name="localColetado">
                                     <option value="" >Selecione...</option>
                                     <?php
-                                        $busca = mysqli_query($link,"SELECT * FROM LOCAL") or die (mysqli_error($link));
+                                        $busca = mysqli_query($link,"SELECT * FROM LOCAL ORDER BY local.nome") or die (mysqli_error($link));
                                         if (isset($busca) && mysqli_num_rows($busca) > 0) {?>
                                             <script>
                                                 idMarcador = {};

@@ -35,6 +35,9 @@
     $puxa4 = mysqli_fetch_assoc($busca4);
 
     function formatarData($dataOriginal) {
+        if ($dataOriginal == ""){
+            return "Sem dados";
+        }
         $novaData = date("d-m-Y", strtotime($dataOriginal));
         $novaData = str_replace('-', '/', $novaData);
         return $novaData;
