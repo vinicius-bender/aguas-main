@@ -43,9 +43,10 @@
                     <form action="amostras.php" method="get" class="d-flex">
                         <input type="text" name="busca" class="form-control">
                         <select name="valor" class="form-control">
-                            <option value="dataPerfuracao" selected>Data de perfuração</option>
+                            <option value="municipio" selected>Município</option>
+                            <option value="ponto">Número da amostra</option>
+                            <option value="dataPerfuracao">Data de perfuração</option>
                             <option value="dataAnalise">Data de análise</option>
-                            <option value="idAmostra">Número da amostra</option>
                         </select>
                         <button type="submit" class="btn btn-outline-dark ms-2">Buscar</button>
                     </form>
