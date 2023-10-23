@@ -67,7 +67,7 @@
             }
            
         }else{
-            $busca = mysqli_query($link,"SELECT * FROM LOCAL");
+            $busca = mysqli_query($link,"SELECT * FROM LOCAL ORDER BY LOCAL.nome");
         }
         if (isset($busca) && mysqli_num_rows($busca) > 0) {
             ?>

@@ -54,8 +54,8 @@
                         <select name="valor" class="form-control">
                             <option value="municipio" selected>Município</option>
                             <option value="ponto">Número da amostra</option>
-                            <option value="dataPerfuracao">Data de perfuração</option>
-                            <option value="dataAnalise">Data de análise</option>
+                            <option value="dataPerfuracao">Data de perfuração (dia-mês-ano)</option>
+                            <option value="dataAnalise">Data de análise (dia-mês-ano)</option>
                         </select>
                         <button type="submit" class="btn btn-outline-dark ms-2">Buscar</button>
                     </form>
@@ -68,7 +68,14 @@
 
         date_default_timezone_set('America/Sao_Paulo');
         if(isset($pesquisa)){
-            $busca = mysqli_query($link,"SELECT * FROM AMOSTRA WHERE `$pesquisa2` LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+            if ($pesquisa2 === "dataPerfuracao" || $pesquisa2 === "dataAnalise"){
+                $dataOri = $pesquisa;
+                $pesquisa = date("m/d/Y", strtotime($dataOri));
+                $pesquisa = str_replace('-', '/', $pesquisa);
+                $busca = mysqli_query($link,"SELECT * FROM AMOSTRA WHERE `$pesquisa2` LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+            }else{
+                $busca = mysqli_query($link,"SELECT * FROM AMOSTRA WHERE `$pesquisa2` LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+            }
         }else{
             $busca = mysqli_query($link,"SELECT * FROM AMOSTRA") or die (mysqli_error($link));
         }
