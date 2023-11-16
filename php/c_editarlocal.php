@@ -12,16 +12,19 @@
     $lat = mysqli_real_escape_string($link,$_POST['lat']);
     $lng = mysqli_real_escape_string($link,$_POST['lng']);
     $tipo = mysqli_real_escape_string($link,$_POST['tipo']);
-    $ponto = $_POST['ponto'];
+    $ponto = mysqli_real_escape_string($link,$_POST['ponto']);
+    // $ponto = $_GET['ponto'];
     
-    $busca = mysqli_query($link,"SELECT foto FROM LOCAL") or die (mysqli_error($link));
-    $foto_original = mysqli_fetch_assoc($busca);
+    $busca = mysqli_query($link,"SELECT foto FROM LOCAL WHERE ponto = '$ponto'") or die (mysqli_error($link));
+    $puxa = mysqli_fetch_assoc($busca);
+    $foto_original = $puxa['foto'];
 
     $foto = $_FILES['foto']['name'];
     $foto_tmp = $_FILES['foto']['tmp_name'];
     $foto_extension = strtolower(pathinfo($foto, PATHINFO_EXTENSION));
     $foto_filename = uniqid() . '_' . time() . '.' . $foto_extension;
     $foto_path = "../img/" . $foto_filename;
+
 
     if($nome == ""){
         ?>  
@@ -39,16 +42,21 @@
         <SCRIPT language="JavaScript">window.location = "editarlocal.php?ponto=<?php echo $ponto?>";</SCRIPT>
         <?php
     }else{
-        if ($foto ==""){
-            mysqli_query($link,"UPDATE local SET nome='$nome',lat='$lat',lng='$lng',tipo='$tipo' WHERE ponto='$ponto'");
+        if ($foto == ""){
+            ?>  
+            <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript"> alert ("\n\n Erro foto vazia \n\n")</SCRIPT>
+            <?php
+            mysqli_query($link,"UPDATE LOCAL SET nome='$nome',lat='$lat',lng='$lng',tipo='$tipo' WHERE ponto='$ponto'");
         } else {
             move_uploaded_file($foto_tmp, $foto_path); 
-            mysqli_query($link,"UPDATE local SET nome='$nome',lat='$lat',lng='$lng',tipo='$tipo',foto='$foto_path' WHERE ponto='$ponto'");
-            unlink($foto_original);
+            mysqli_query($link, "UPDATE LOCAL SET nome='$nome', lat='$lat', lng='$lng', tipo='$tipo', foto='$foto_path' WHERE ponto = '$ponto'");
+            if (file_exists($foto_original)) {
+                unlink($foto_original);
+            }
         }
         ?>
         <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript"> alert ("\n\n Salvo com sucesso \n\n")</SCRIPT>
-        <SCRIPT language="JavaScript">window.location = "local.php?ponto=<?php echo $ponto?>";</SCRIPT>
+        <SCRIPT language="JavaScript">window.location = "local.php?ponto=<?php echo $ponto; ?>"</SCRIPT>
         <?php
     }
 ?> 
