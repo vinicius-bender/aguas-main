@@ -63,7 +63,6 @@
                         <button type="submit" class="btn btn-outline-dark ms-2">Limpar Busca</button>
                     </form>
                 </div>
-                    
     <?php
 
         date_default_timezone_set('America/Sao_Paulo');

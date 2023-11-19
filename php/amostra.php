@@ -37,7 +37,7 @@
     $idCriador = $row['idCriador'];
     $idEditor = $row['idEditor'];
 
-    $query2 = mysqli_query($link,"SELECT nome, ponto FROM LOCAL WHERE ponto = '$ponto'") or die (mysqli_error($link));
+    $query2 = mysqli_query($link,"SELECT nome, ponto, sacAtiva, populacao FROM LOCAL WHERE ponto = '$ponto'") or die (mysqli_error($link));
     $query3 = mysqli_query($link,"SELECT nome FROM USUARIO WHERE idUsuario = '$idCriador'") or die (mysqli_error($link));
 
     $row2 = mysqli_fetch_array($query2);
@@ -110,6 +110,18 @@
         <div class="mx-5 d-flex">
             <p class="me-1">Data de coleta:</p>
             <p><?php echo formatarData($row['dataAnalise']) ?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">SAC Ativa:</p> 
+            <p><?php echo $row2['sacAtiva']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">População:</p> 
+            <p><?php echo $row2['populacao']?></p>
+        </div>
+        <div class="mx-5 d-flex">
+            <p class="me-1">Fluoerto:</p> 
+            <p><?php echo $row['fluor'] . "mg/L"?></p>
         </div>
         <div class="mx-5 d-flex">
             <p class="me-1">Cota terreno:</p>

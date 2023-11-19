@@ -59,11 +59,18 @@
         date_default_timezone_set('America/Sao_Paulo');
         if(isset($pesquisa)){
             if ($pesquisa2 === "municipio"){
-                $busca = mysqli_query($link,"SELECT local.ponto, municipio, nome FROM amostra, local
-                WHERE amostra.ponto = local.ponto AND amostra.municipio LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+                // $busca = mysqli_query($link,"SELECT local.ponto, municipio, nome FROM amostra, local
+                // WHERE amostra.ponto = local.ponto AND amostra.municipio LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+                $busca = mysqli_query($link, "SELECT DISTINCT local.ponto, municipio, local.nome FROM amostra, local
+                WHERE amostra.ponto = local.ponto AND amostra.municipio LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'
+                ORDER BY local.nome");
+                
             }else{
-                $busca = mysqli_query($link,"SELECT local.ponto, municipio, nome FROM amostra, local
-                WHERE amostra.ponto = local.ponto AND local.nome LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+                // $busca = mysqli_query($link,"SELECT local.ponto, municipio, nome FROM amostra, local
+                // WHERE amostra.ponto = local.ponto AND local.nome LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'");
+                $busca = mysqli_query($link,"SELECT local.nome, local.ponto FROM local
+                WHERE local.nome LIKE '%" . mysqli_real_escape_string($link, $pesquisa) . "%'
+                 ORDER BY local.nome");
             }
            
         }else{
