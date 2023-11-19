@@ -35,6 +35,7 @@
     $novoNome = $_POST['localColetado'];
     $dataPerfuracao = $_POST['dataPerfuracao'];
     $dataAnalise = $_POST['dataAnalise'];
+    $novoFluor = $_POST['fluor'];
     $novoCotaTerreno = $_POST['cotaTerreno'];
     $novoProfundidade = $_POST['profundidadeFinal'];
     $novoNivelDinamico = $_POST['nivelDinamico'];
@@ -66,7 +67,7 @@
 
     // Recuperar os dados existentes do banco de dados
     $sql = "SELECT dataPerfuracao, dataAnalise, cotaTerreno, profundidadeFinal, nivelDinamico, nivelEstatico, vazaoEstabilizacao,  condutividade,
-    cor, odor, sabor, temperatura, turbidez FROM amostra WHERE ponto = '$ponto'";
+    cor, odor, sabor, temperatura, turbidez, fluor FROM amostra WHERE ponto = '$ponto'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
@@ -77,6 +78,9 @@
     }
     if ($dataAnalise != $row['dataAnalise']) {
         $updateFields[] = "dataAnalise = '$dataAnaliseFormatada'";
+    }
+    if ($novoFluor != $row['fluor']) {
+        $updateFields[] = "fluor = '$novoFluor'";
     }
     if ($novoCotaTerreno != $row['cotaTerreno']) {
         $updateFields[] = "cotaTerreno = '$novoCotaTerreno'";

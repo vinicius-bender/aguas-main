@@ -68,7 +68,10 @@
                                 <label for="data" class="form-label">Data de análise:</label>
                                 <input type="text" class="form-control" value="<?php echo formatarData($row['dataAnalise'])?>" name="dataAnalise" placeholder="dia-mês-ano">
                             </div>
-                            
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Fluoreto (mg/L):</label>
+                                <input type="text" class="form-control" placeholder="Fluor" name="fluor" value="<?php echo $row['fluor']?>">                  
+                            </div>
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Cota terreno:</label>
                                 <input type="text" class="form-control" placeholder="Cota terreno" name="cotaTerreno" value="<?php echo $row['cotaTerreno']?>">                  

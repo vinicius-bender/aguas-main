@@ -35,6 +35,10 @@
     $busca = mysqli_query($link,"SELECT * FROM LOCAL WHERE ponto = '$ponto'") or die (mysqli_error($link));
     $puxa = mysqli_fetch_assoc($busca);
     $nome = $puxa['nome'];
+    $pontoAtual = $ponto;
+    $pontoNovo = $ponto;
+    $sacAtiva = $puxa['sacAtiva'];
+    $populacao = $puxa['populacao'];
     $foto = $puxa['foto'];
     $lat = $puxa['lat'];
     $lng = $puxa['lng'];
@@ -50,6 +54,18 @@
                 <div class="mb-3 mt-3">
                     <label for="nome" class="form-label">Nome do local:</label>
                     <input type="text" class="form-control" id="nome" placeholder="Nome do local" name="nome" value='<?php echo $nome?>'>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="pontoNovo" class="form-label">Ponto do local:</label>
+                    <input type="text" class="form-control" id="pontoNovo" placeholder="Ponto do local" name="pontoNovo" value='<?php echo $pontoNovo?>'>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="sacAtiva" class="form-label">SAC Ativa: </label>
+                    <input type="text" class="form-control" id="sacAtiva" placeholder="Sac Ativa" name="sacAtiva" value='<?php echo $sacAtiva?>'>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="populacao" class="form-label">Populacao: </label>
+                    <input type="text" class="form-control" id="populacao" placeholder="População" name="populacao" value='<?php echo $populacao?>'>
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="foto" class="form-label">Foto do Local:</label>
@@ -74,7 +90,8 @@
                     <label for="tipo" class="form-label">Tipo do local:</label>
                     <input type="text" class="form-control" placeholder="Exemplo: Rio, lago..." name="tipo" value="<?php echo $tipo?>">
                 </div>
-                    <input type="hidden" name="ponto" value="<?php echo $ponto; ?>">
+                    <input type="hidden" name="pontoAtual" value="<?php echo $pontoAtual; ?>">
+                    
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </div>

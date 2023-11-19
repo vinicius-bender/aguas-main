@@ -121,7 +121,7 @@
         </div>
         <div class="mx-5 d-flex">
             <p class="me-1">Fluoerto:</p> 
-            <p><?php echo $row['fluor'] . "mg/L"?></p>
+            <p><?php echo $row['fluor'] . " mg/L"?></p>
         </div>
         <div class="mx-5 d-flex">
             <p class="me-1">Cota terreno:</p>
