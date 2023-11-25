@@ -49,21 +49,21 @@
             <div class="col-4 mt-5">
                 <div id="map" style="height: 350px;" class="ms-5"></div>
                     <script>
-                        var map = L.map('map',{ zoomControl: false , scrollWheelZoom: false , doubleClickZoom:false, boxZoom: false}).setView([<?php echo $puxa['lat']; ?>,<?php echo $puxa['lng']; ?>], 17);
+                         var map = L.map('map',{ zoomControl: true , scrollWheelZoom: true , doubleClickZoom:false, boxZoom: false}).setView([<?php echo $puxa['lat']; ?>,<?php echo $puxa['lng']; ?>], 14);
                         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             maxZoom: 19,
-                            minZoom: 15,
+                            minZoom: 10,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                         }).addTo(map);
                         var Marcador = L.icon({
-                            iconUrl: 'marcador.png',
+                            iconUrl: 'iconepoco.png',
                             iconSize:     [32, 32], 
                             iconAnchor:   [16, 32],
                         });
-                        map.dragging.disable();
+                        // map.dragging.disable();
                         L.marker([<?php echo $puxa['lat']?>, <?php echo $puxa['lng']?>], {icon: Marcador}).addTo(map).addEventListener("click", myFunction);
                         function myFunction(e) {
-                            map.flyTo([e.latlng.lat, e.latlng.lng],17);
+                            map.flyTo([e.latlng.lat, e.latlng.lng], 14);
                         };
                         
                     </script>   
