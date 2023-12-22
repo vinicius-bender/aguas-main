@@ -27,6 +27,7 @@
     $puxa = mysqli_fetch_assoc($busca);
     $idCriador = $puxa['idCriador'];
     $idEditor = $puxa['idEditor'];
+    $foto = $puxa["foto"];
     
     $busca2 = mysqli_query($link,"SELECT * FROM AMOSTRA WHERE ponto = '$idLocal' ORDER BY dataAnalise") or die (mysqli_error($link));
     $busca3 = mysqli_query($link,"SELECT nome FROM USUARIO WHERE idUsuario = '$idCriador'") or die (mysqli_error($link));
@@ -47,26 +48,7 @@
     <div class='container-fluid'>
         <div class='row'>
             <div class="col-4 mt-5">
-                <div id="map" style="height: 350px;" class="ms-5"></div>
-                    <script>
-                         var map = L.map('map',{ zoomControl: true , scrollWheelZoom: true , doubleClickZoom:false, boxZoom: false}).setView([<?php echo $puxa['lat']; ?>,<?php echo $puxa['lng']; ?>], 14);
-                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            maxZoom: 19,
-                            minZoom: 10,
-                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                        }).addTo(map);
-                        var Marcador = L.icon({
-                            iconUrl: 'iconepoco.png',
-                            iconSize:     [32, 32], 
-                            iconAnchor:   [16, 32],
-                        });
-                        // map.dragging.disable();
-                        L.marker([<?php echo $puxa['lat']?>, <?php echo $puxa['lng']?>], {icon: Marcador}).addTo(map).addEventListener("click", myFunction);
-                        function myFunction(e) {
-                            map.flyTo([e.latlng.lat, e.latlng.lng], 14);
-                        };
-                        
-                    </script>   
+                <img src="<?php echo$foto ?>" style="width: 350px; height: 350px;">
             <div class='list mt-3 ms-5' style='font-size:20px'>
                 <h1 class="mb-0"> <?php echo $puxa['nome']; ?></h1>
                 <p class="mb-0"> <?php echo $puxa['tipo']; ?></p>
